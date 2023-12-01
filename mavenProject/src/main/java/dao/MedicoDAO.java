@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.sql.Connection;
@@ -16,13 +11,13 @@ import utilitario.Conectar;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class MedicoDAO {
 
     public void cadastrar(Medico m) {
         Connection con = Conectar.getConectar();
-        String sql = "INSERT INTO medico (nome,email,crm,telefone,especializacao) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO medico (nome,email,crm,telefone,especializacao,senha,perfil) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement smt = con.prepareStatement(sql)) {
             smt.setString(1, m.getNome());
             smt.setString(2, m.getEmail());
@@ -40,14 +35,16 @@ public class MedicoDAO {
 
     public void atualizar(Medico m) {
         Connection con = Conectar.getConectar();
-        String sql = "UPDATE medico SET nome = ?, email = ?, crm = ?, telefone = ?, especializacao = ? WHERE id_medico = ?";
+        String sql = "UPDATE medico SET nome = ?, email = ?, crm = ?, telefone = ?, especializacao = ?, senha = ?, perfil = ? WHERE id_medico = ?";
         try (PreparedStatement smt = con.prepareStatement(sql)) {
             smt.setString(1, m.getNome());
             smt.setString(2, m.getEmail());
             smt.setString(3, m.getCrm());
             smt.setString(4, m.getTelefone());
             smt.setString(5, m.getEspecializacao());
-            smt.setInt(6, m.getId_medico());
+            smt.setString(6,m.getSenha());
+            smt.setString(7, m.getPerfil());
+            smt.setInt(8, m.getId_medico());
             smt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
             smt.close();
@@ -88,6 +85,8 @@ public class MedicoDAO {
                 m.setCrm(resultado.getString("crm"));
                 m.setTelefone(resultado.getString("telefone"));
                 m.setEspecializacao(resultado.getString("especializacao"));
+                m.setSenha(resultado.getString("senha"));
+                m.setPerfil(resultado.getString("perfil"));
                 listaMedico.add(m);
             }
             smt.close();

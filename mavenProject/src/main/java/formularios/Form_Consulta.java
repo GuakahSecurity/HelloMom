@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formularios;
 
 import dao.ConsultaDAO;
@@ -15,7 +10,7 @@ import pesquisas.Pes_paciente;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Form_Consulta extends javax.swing.JFrame {
     

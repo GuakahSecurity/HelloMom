@@ -1,4 +1,3 @@
-
 package mapeamento;
 
 public class Paciente {
@@ -10,6 +9,7 @@ public class Paciente {
     private String telefone;
     private String datanasc;
     private String senha;
+    private String perfil;
 
     public int getId_pacinte() {
         return id_pacinte;
@@ -75,7 +75,14 @@ public class Paciente {
         this.senha = senha;
     }
     
+    public String getPerfil() {
+        return perfil;
+    }
 
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
+    }
+    
     @Override
     public String toString() {
         return getNome(); //To change body of generated methods, choose Tools | Templates.

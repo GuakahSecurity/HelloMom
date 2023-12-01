@@ -1,22 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mapeamento;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Medico {
     private int id_medico;
     private String nome;
-    static String  teee = "ssada";
     private String crm;
     private String email;
     private String telefone;
     private String especializacao;
+    private String senha;
+    private String perfil;
 
     public int getId_medico() {
         return id_medico;
@@ -64,6 +60,22 @@ public class Medico {
 
     public void setEspecializacao(String especializacao) {
         this.especializacao = especializacao;
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
     @Override

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formularios;
 
 import dao.MedicoDAO;
@@ -13,10 +8,10 @@ import mapeamento.Medico;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Form_Medico extends javax.swing.JFrame {
-
+private String perfil = "med";
     /**
      * Creates new form Form_Medico
      */
@@ -56,6 +51,8 @@ public class Form_Medico extends javax.swing.JFrame {
         jB_salvar = new javax.swing.JButton();
         jB_alterar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jP_senha = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -134,6 +131,8 @@ public class Form_Medico extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Senha");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,35 +155,47 @@ public class Form_Medico extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jB_alterar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jT_crm, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jT_nome)
-                        .addComponent(jT_email)
-                        .addComponent(jF_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jT_esp)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton3)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jT_crm, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jT_nome)
+                            .addComponent(jT_email)
+                            .addComponent(jF_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jT_esp))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(44, 44, 44))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jP_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel7)
-                        .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jT_crm))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel7)
+                                .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jT_crm)))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jT_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jT_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jP_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -203,7 +214,7 @@ public class Form_Medico extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jB_alterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
@@ -214,17 +225,17 @@ public class Form_Medico extends javax.swing.JFrame {
 
         jTabela_medico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Email", "CRM", "Telefone", "Especialização"
+                "ID", "Nome", "Email", "CRM", "Telefone", "Especialização", "Senha", "Perfil"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -322,6 +333,7 @@ public class Form_Medico extends javax.swing.JFrame {
         jT_email.setText("");
         jT_esp.setText("");
         jF_telefone.setText("");
+        jP_senha.setText("");
         jB_alterar.setVisible(false);
         jB_salvar.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -333,6 +345,7 @@ public class Form_Medico extends javax.swing.JFrame {
         jT_email.setText("");
         jT_esp.setText("");
         jF_telefone.setText("");
+        jP_senha.setText("");
         jTabbedPane1.setSelectedIndex(0);
         jB_alterar.setVisible(false);
         jB_salvar.setVisible(true);
@@ -345,6 +358,8 @@ public class Form_Medico extends javax.swing.JFrame {
         m.setCrm(jT_crm.getText());
         m.setTelefone(jF_telefone.getText());
         m.setEspecializacao(jT_esp.getText());
+        m.setSenha(jP_senha.getText());
+        m.setPerfil(perfil);
         
         MedicoDAO mdao = new MedicoDAO();
         mdao.cadastrar(m);
@@ -362,6 +377,9 @@ public class Form_Medico extends javax.swing.JFrame {
             m.setCrm(jTabela_medico.getValueAt(opcao, 3).toString());
             m.setTelefone(jTabela_medico.getValueAt(opcao, 4).toString());
             m.setEspecializacao(jTabela_medico.getValueAt(opcao, 5).toString());
+            m.setSenha(jTabela_medico.getValueAt(opcao, 6).toString());
+            m.setPerfil(jTabela_medico.getValueAt(opcao, 7).toString());
+            
             
             MedicoDAO mdao = new MedicoDAO();
             mdao.excluir(m);
@@ -381,7 +399,7 @@ public class Form_Medico extends javax.swing.JFrame {
             jT_crm.setText(jTabela_medico.getValueAt(opcao, 3).toString());
             jF_telefone.setText(jTabela_medico.getValueAt(opcao, 4).toString());
             jT_esp.setText(jTabela_medico.getValueAt(opcao, 5).toString());
-            
+            jP_senha.setText(jTabela_medico.getValueAt(opcao, 6).toString());
             jTabbedPane1.setSelectedIndex(0);
             jB_alterar.setVisible(true);
             jB_salvar.setVisible(false);
@@ -398,11 +416,15 @@ public class Form_Medico extends javax.swing.JFrame {
         m.setCrm(jT_crm.getText());
         m.setTelefone(jF_telefone.getText());
         m.setEspecializacao(jT_esp.getText());
+        m.setSenha(jP_senha.getText());
+        m.setPerfil(perfil);
         
         MedicoDAO mdao = new MedicoDAO();
         mdao.atualizar(m);
         preencherTabela();
         jTabbedPane1.setSelectedIndex(1);
+        jB_salvar.setVisible(true);
+        jB_alterar.setVisible(false);
     }//GEN-LAST:event_jB_alterarActionPerformed
     
     public void preencherTabela() {
@@ -411,7 +433,7 @@ public class Form_Medico extends javax.swing.JFrame {
         DefaultTableModel tableM = (DefaultTableModel) jTabela_medico.getModel();
         tableM.setRowCount(0);
         for (Medico m : listaMedicos) {
-            tableM.addRow(new Object[]{m.getId_medico(), m.getNome(), m.getEmail(), m.getCrm(), m.getTelefone(), m.getEspecializacao()});
+            tableM.addRow(new Object[]{m.getId_medico(), m.getNome(), m.getEmail(), m.getCrm(), m.getTelefone(), m.getEspecializacao(), m.getSenha(), m.getPerfil() });
         }
     }
     
@@ -441,6 +463,8 @@ public class Form_Medico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jP_senha;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

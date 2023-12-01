@@ -4,7 +4,9 @@ C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\mapeament
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\mapeamento\Paciente.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_Consulta.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_funcionario.java
-C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\testePaciente.java
+C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_menuPaciente.java
+C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_ListaConsultaPaciente.java
+C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_CadPaciente.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_Consulta2.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\mapeamento\Medico.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_ListaConsulta.java
@@ -12,6 +14,7 @@ C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formulari
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\utilitario\Conectar.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\mapeamento\Funcionario.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\dao\FuncionarioDAO.java
+C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_menuMedico.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\pesquisas\Pes_Medico.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\formularios\Form_Medico.java
 C:\Users\Gustavo\Documents\NetBeansProjects\mavenProject\src\main\java\pesquisas\Pes_paciente.java

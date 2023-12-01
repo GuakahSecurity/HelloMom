@@ -9,11 +9,15 @@ import javax.swing.JOptionPane;
 import mapeamento.Paciente;
 import utilitario.Conectar;
 
+/**
+ *
+ * @author Gustavo
+ */
 public class PacienteDAO {
 
     public void cadastrar(Paciente p) {
         Connection con = Conectar.getConectar();
-        String sql = "INSERT INTO paciente (nome,cpf,email,datanasc,telefone,sexo,senha) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO paciente (nome,cpf,email,datanasc,telefone,sexo,senha,perfil) VALUES(?,?,?,?,?,?,?,?)";
         try (PreparedStatement smt = con.prepareStatement(sql)) {
             smt.setString(1, p.getNome());
             smt.setString(2, p.getCpf());
@@ -22,6 +26,7 @@ public class PacienteDAO {
             smt.setString(5, p.getTelefone());
             smt.setString(6, p.getSexo());
             smt.setString(7,p.getSenha());
+            smt.setString(8, p.getPerfil());
             smt.executeUpdate();
             smt.close();
             con.close();
@@ -33,7 +38,7 @@ public class PacienteDAO {
 
     public void atualizar(Paciente p) {
         Connection con = Conectar.getConectar();
-        String sql = "UPDATE paciente SET nome = ?, cpf = ?, email = ?, datanasc = ?, telefone = ?, sexo = ?, senha = ? WHERE id_paciente = ?";
+        String sql = "UPDATE paciente SET nome = ?, cpf = ?, email = ?, datanasc = ?, telefone = ?, sexo = ?, senha = ?, perfil = ? WHERE id_paciente = ?";
         try (PreparedStatement smt = con.prepareStatement(sql)) {
             smt.setString(1, p.getNome());
             smt.setString(2, p.getCpf());
@@ -42,7 +47,8 @@ public class PacienteDAO {
             smt.setString(5, p.getTelefone());
             smt.setString(6, p.getSexo());
             smt.setString(7,p.getSenha());
-            smt.setInt(8, p.getId_pacinte());
+            smt.setString(8, p.getPerfil());
+            smt.setInt(9, p.getId_pacinte());
             smt.executeUpdate();
             smt.close();
             con.close();
@@ -65,7 +71,7 @@ public class PacienteDAO {
                 con.close();
                 JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao excluir o registro "+ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ao excluir o registro "+"o paciente possui consulta marcada.");
             }
         }
     }
@@ -86,6 +92,7 @@ public class PacienteDAO {
                 p.setTelefone(resultado.getString("telefone"));
                 p.setSexo(resultado.getString("sexo"));
                 p.setSenha(resultado.getString("senha"));
+                p.setPerfil(resultado.getString("perfil"));
                 lista.add(p);
             }
             smt.close();
@@ -114,6 +121,7 @@ public class PacienteDAO {
                 p.setTelefone(resultado.getString("telefone"));
                 p.setSexo(resultado.getString("sexo"));
                 p.setSenha(resultado.getString("senha"));
+                p.setPerfil(resultado.getString("perfil"));
             }else{
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
             }

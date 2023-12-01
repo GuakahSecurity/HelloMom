@@ -9,11 +9,15 @@ import javax.swing.JOptionPane;
 import mapeamento.Funcionario;
 import utilitario.Conectar;
 
+/**
+ *
+ * @author Gustavo
+ */
 public class FuncionarioDAO {
 
     public void cadastrar(Funcionario r) {
         Connection con = Conectar.getConectar();
-        String sql = "INSERT INTO funcionario (nome,cpf,email,telefone,dataadmissao,senha) VALUES(?,?,?,?,?,MD5(?))";
+        String sql = "INSERT INTO funcionario (nome,cpf,email,telefone,dataadmissao,senha, perfil) VALUES(?,?,?,?,?,?,?)";
         try (PreparedStatement smt = con.prepareStatement(sql)) {
             smt.setString(1, r.getNome());
             smt.setString(2, r.getCpf());
@@ -21,6 +25,7 @@ public class FuncionarioDAO {
             smt.setString(4, r.getTelefone());
             smt.setString(5, r.getDataadmissao());
             smt.setString(6, r.getSenha());
+            smt.setString(7, r.getPerfil());
             smt.executeUpdate();
             smt.close();
             con.close();
@@ -32,14 +37,16 @@ public class FuncionarioDAO {
 
     public void atualizar(Funcionario r) {
         Connection con = Conectar.getConectar();
-        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, email = ?, telefone = ?,dataadmissao = ? WHERE id_funcionario = ?";
+        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, email = ?, telefone = ?, dataadmissao = ?, senha = ?, perfil = ? WHERE id_funcionario = ?";
         try (PreparedStatement smt = con.prepareStatement(sql)) {
             smt.setString(1, r.getNome());
             smt.setString(2, r.getCpf());
             smt.setString(3, r.getEmail());
             smt.setString(4, r.getTelefone());
             smt.setString(5, r.getDataadmissao());
-            smt.setInt(6, r.getId_funcionario());
+            smt.setString(6, r.getSenha());
+            smt.setString(7, r.getPerfil());
+            smt.setInt(8, r.getId_funcionario());
             smt.executeUpdate();
             smt.close();
             con.close();
@@ -82,6 +89,7 @@ public class FuncionarioDAO {
                 f.setTelefone(resultado.getString("telefone"));
                 f.setDataadmissao(resultado.getString("dataadmissao"));
                 f.setSenha(resultado.getString("senha"));
+                f.setPerfil(resultado.getString("perfil"));
                 listaFuncionario.add(f);
             }
             smt.close();
@@ -95,7 +103,7 @@ public class FuncionarioDAO {
     public Funcionario login(String cpf,String senha){
         Connection con = Conectar.getConectar();
         Funcionario f = new Funcionario();
-        String sql = "SELECT * FROM funcionario WHERE cpf = ? and senha = md5(?)";
+        String sql = "SELECT * FROM funcionario WHERE cpf = ? and senha = ? ";
         try(PreparedStatement smt = con.prepareStatement(sql)){
             smt.setString(1, cpf);
             smt.setString(2, senha);
@@ -109,6 +117,7 @@ public class FuncionarioDAO {
                 f.setTelefone(resultado.getString("telefone"));
                 f.setDataadmissao(resultado.getString("dataadmissao"));
                 f.setSenha(resultado.getString("senha"));
+                f.setPerfil(resultado.getString("perfil"));
             }else{
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
             }

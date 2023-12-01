@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formularios;
 
 import dao.PacienteDAO;
@@ -13,10 +8,11 @@ import mapeamento.Paciente;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Form_paciente extends javax.swing.JFrame {
 
+    private String perfil = "user";
     /**
      * Creates new form Form_paciente
      */
@@ -44,7 +40,6 @@ public class Form_paciente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jT_nome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jF_cpf = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jF_data = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -58,6 +53,7 @@ public class Form_paciente extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jT_senha = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jF_cpf = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -100,12 +96,6 @@ public class Form_paciente extends javax.swing.JFrame {
         jLabel3.setText("Nome.:");
 
         jLabel4.setText("CPF.:");
-
-        try {
-            jF_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         jLabel5.setText("Data de Nascimento.:");
 
@@ -177,17 +167,17 @@ public class Form_paciente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jT_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
+                                    .addGap(1, 1, 1)
+                                    .addComponent(jT_email, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(jT_email, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +195,7 @@ public class Form_paciente extends javax.swing.JFrame {
                                         .addComponent(jButton3)))
                                 .addGap(63, 63, 63)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel10)
@@ -230,9 +220,9 @@ public class Form_paciente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -248,28 +238,39 @@ public class Form_paciente extends javax.swing.JFrame {
                     .addComponent(jB_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jB_atualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
         jLabel9.setText("Pesquisar.:");
 
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         jButton4.setText("...");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jT_paciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NOME", "CPF", "E-MAIL", "SEXO", "DATA NASC", "TELEFONE", "SENHA"
+                "ID", "NOME", "CPF", "E-MAIL", "SEXO", "DATA NASC", "TELEFONE", "SENHA", "PERFIL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -340,7 +341,7 @@ public class Form_paciente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                         .addGap(2, 2, 2))
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -372,6 +373,8 @@ public class Form_paciente extends javax.swing.JFrame {
         p.setTelefone(jF_telefone.getText());
         p.setSexo(jC_sexo.getSelectedItem().toString());
         p.setSenha(jT_senha.getText());
+        p.setPerfil(perfil);
+        
         PacienteDAO pdao = new PacienteDAO();
         pdao.cadastrar(p);
         preencherTabela();
@@ -388,6 +391,8 @@ public class Form_paciente extends javax.swing.JFrame {
         p.setTelefone(jF_telefone.getText());
         p.setSexo(jC_sexo.getSelectedItem().toString());
         p.setSenha(jT_senha.getText());
+        p.setPerfil(perfil);
+        
         PacienteDAO pdao = new PacienteDAO();
         pdao.atualizar(p);
         preencherTabela();
@@ -427,6 +432,7 @@ public class Form_paciente extends javax.swing.JFrame {
             p.setDatanasc(jT_paciente.getValueAt(opcao, 5).toString());
             p.setTelefone(jT_paciente.getValueAt(opcao, 6).toString());
             p.setSenha(jT_paciente.getValueAt(opcao, 7).toString());
+            p.setPerfil(jT_paciente.getValueAt(opcao, 8).toString());
 
             PacienteDAO pdao = new PacienteDAO();
             pdao.excluir(p);
@@ -467,13 +473,33 @@ public class Form_paciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jT_senhaActionPerformed
 
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        
+        
+        
+        //COLOCAR PESQUISA PACIENTE
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     public void preencherTabela() {
         PacienteDAO pdao = new PacienteDAO();
         List<Paciente> lista = pdao.listarTodos();
         DefaultTableModel modeloTabela = (DefaultTableModel) jT_paciente.getModel();
         modeloTabela.setRowCount(0);
         for (Paciente p : lista) {
-            modeloTabela.addRow(new Object[]{p.getId_pacinte(), p.getNome(), p.getCpf(), p.getEmail(), p.getSexo(), p.getDatanasc(), p.getTelefone(), p.getSenha() });
+            modeloTabela.addRow(new Object[]{p.getId_pacinte(), p.getNome(), p.getCpf(), p.getEmail(), p.getSexo(), p.getDatanasc(), p.getTelefone(), p.getSenha(), p.getPerfil() });
         }
     }
 
@@ -495,7 +521,7 @@ public class Form_paciente extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox jC_sexo;
-    private javax.swing.JFormattedTextField jF_cpf;
+    private javax.swing.JTextField jF_cpf;
     private javax.swing.JFormattedTextField jF_data;
     private javax.swing.JFormattedTextField jF_telefone;
     private javax.swing.JLabel jLabel1;

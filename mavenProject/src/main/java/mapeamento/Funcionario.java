@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mapeamento;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Funcionario {
     private int id_funcionario;
@@ -17,6 +12,7 @@ public class Funcionario {
     private String telefone;
     private String dataadmissao;
     private String senha;
+    private String perfil;
 
     public int getId_funcionario() {
         return id_funcionario;
@@ -72,6 +68,14 @@ public class Funcionario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+     public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
     
 }

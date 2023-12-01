@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formularios;
 
 import dao.ConsultaDAO;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mapeamento.Consulta;
 import mapeamento.Funcionario;
@@ -15,7 +11,7 @@ import mapeamento.Paciente;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Form_ListaConsulta extends javax.swing.JFrame {
 
@@ -91,7 +87,7 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, true, true, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,6 +111,11 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
         });
 
         jButton3.setText("IMPRIMIR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Pesquisar por data.:");
 
@@ -235,6 +236,10 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         preencherTabela();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public void preencherTabela() {
         ConsultaDAO cdao = new ConsultaDAO();

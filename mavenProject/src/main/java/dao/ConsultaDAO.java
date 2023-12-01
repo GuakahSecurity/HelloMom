@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,7 +15,7 @@ import utilitario.Conectar;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class ConsultaDAO {
 
@@ -115,45 +111,50 @@ public class ConsultaDAO {
         }
         return lista;
     }
-
+    
     public Consulta buscarID(int id_consulta) {
-        Connection con = Conectar.getConectar();
-        Consulta c = new Consulta();
-        String sql = "SELECT * FROM consulta "
-                + "INNER JOIN paciente  ON paciente.id_paciente = consulta.id_paciente"
-                + " INNER JOIN medico ON medico.id_medico = consulta.id_medico "
-                + "INNER JOIN funcionario ON funcionario.id_funcionario = consulta.id_funcionario WHERE consulta.id_consulta = ?";
+    Consulta c = new Consulta();
 
-        try (PreparedStatement smt = con.prepareStatement(sql)) {
-            smt.setInt(1, id_consulta);
-            ResultSet resultado = smt.executeQuery();
-            resultado.first();
-            c.setId_consulta(resultado.getInt("consulta.id_consulta"));
-            c.setData(resultado.getString("consulta.dataAtendimento"));
-            c.setHoras(resultado.getString("consulta.horario"));
+    String sql = "SELECT * FROM consulta "
+            + "INNER JOIN paciente ON paciente.id_paciente = consulta.id_paciente "
+            + "INNER JOIN medico ON medico.id_medico = consulta.id_medico "
+            + "INNER JOIN funcionario ON funcionario.id_funcionario = consulta.id_funcionario WHERE consulta.id_consulta = ?";
 
-            Funcionario f = new Funcionario();
-            f.setId_funcionario(resultado.getInt("funcionario.id_funcionario"));
-            f.setNome(resultado.getString("funcionario.nome"));
-            c.setFuncionario(f);
+    try (Connection con = Conectar.getConectar();
+         PreparedStatement smt = con.prepareStatement(sql)) {
 
-            Medico m = new Medico();
-            m.setId_medico(resultado.getInt("medico.id_medico"));
-            m.setNome(resultado.getString("medico.nome"));
-            c.setMedico(m);
+        smt.setInt(1, id_consulta);
 
-            Paciente p = new Paciente();
-            p.setId_pacinte(resultado.getInt("paciente.id_paciente"));
-            p.setNome(resultado.getString("paciente.nome"));
-            c.setPaciente(p);
+        try (ResultSet resultado = smt.executeQuery()) {
+            if (resultado.next()) {
+                c.setId_consulta(resultado.getInt("id_consulta"));
+                c.setData(resultado.getString("dataAtendimento"));
+                c.setHoras(resultado.getString("horario"));
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar a consulta " + ex.getMessage());
+                Funcionario f = new Funcionario();
+                f.setId_funcionario(resultado.getInt("id_funcionario"));
+                f.setNome(resultado.getString("funcionario.nome"));
+                c.setFuncionario(f);
+
+                Medico m = new Medico();
+                m.setId_medico(resultado.getInt("id_medico"));
+                m.setNome(resultado.getString("medico.nome"));
+                c.setMedico(m);
+
+                Paciente p = new Paciente();
+                p.setId_pacinte(resultado.getInt("id_paciente"));
+                p.setNome(resultado.getString("paciente.nome"));
+                c.setPaciente(p);
+            } else {
+                JOptionPane.showMessageDialog(null, "Consulta não encontrada para o ID: " + id_consulta);
+            }
         }
 
-        return c;
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Erro ao buscar a consulta: " + ex.getMessage());
     }
-    
+    return c;
+}  
     
     public List<Consulta> buscaData(String datapesquisa) {
         Connection con = Conectar.getConectar();

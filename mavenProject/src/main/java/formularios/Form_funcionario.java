@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formularios;
 
 import dao.FuncionarioDAO;
@@ -13,10 +8,12 @@ import mapeamento.Funcionario;
 
 /**
  *
- * @author Elias
+ * @author Gustavo
  */
 public class Form_funcionario extends javax.swing.JFrame {
 
+    private String perfil = "adm";
+    
     /**
      * Creates new form Form_funcionario
      */
@@ -48,7 +45,6 @@ public class Form_funcionario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jT_id = new javax.swing.JTextField();
-        jF_cpf = new javax.swing.JFormattedTextField();
         jT_nome = new javax.swing.JTextField();
         jT_email = new javax.swing.JTextField();
         jF_telefone = new javax.swing.JFormattedTextField();
@@ -57,6 +53,7 @@ public class Form_funcionario extends javax.swing.JFrame {
         jB_salvar = new javax.swing.JButton();
         jB_atualizar = new javax.swing.JButton();
         jBcancelar = new javax.swing.JButton();
+        jF_cpf = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -82,7 +79,7 @@ public class Form_funcionario extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,12 +106,6 @@ public class Form_funcionario extends javax.swing.JFrame {
         jT_id.setEditable(false);
 
         try {
-            jF_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
             jF_telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -125,6 +116,12 @@ public class Form_funcionario extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jP_senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jP_senhaActionPerformed(evt);
+            }
+        });
 
         jB_salvar.setText("Salvar");
         jB_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,29 +158,32 @@ public class Form_funcionario extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jB_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jB_atualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBcancelar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jF_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jF_adm, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jP_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jB_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jB_atualizar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jBcancelar))
+                        .addComponent(jT_nome)
+                        .addComponent(jT_email)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jF_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel7))
+                                .addComponent(jP_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                            .addComponent(jF_adm, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jF_cpf))
-                    .addComponent(jT_nome)
-                    .addComponent(jT_email))
-                .addContainerGap(114, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +194,7 @@ public class Form_funcionario extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(jT_id, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jF_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jT_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,7 +218,7 @@ public class Form_funcionario extends javax.swing.JFrame {
                     .addComponent(jBcancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jB_salvar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jB_atualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
@@ -229,17 +229,17 @@ public class Form_funcionario extends javax.swing.JFrame {
 
         jTabela_funcionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "CPF", "E-mail", "Telefone", "Data de Admissão"
+                "ID", "Nome", "CPF", "E-mail", "Telefone", "Data de Admissão", "Senha", "Perfil"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -334,7 +334,8 @@ public class Form_funcionario extends javax.swing.JFrame {
         f.setCpf(jF_cpf.getText());
         f.setTelefone(jF_telefone.getText());
         f.setDataadmissao(jF_adm.getText());
-        f.setSenha("ifro2020"+jP_senha.getText());
+        f.setSenha(jP_senha.getText());
+        f.setPerfil(perfil);
         
         FuncionarioDAO fdao = new FuncionarioDAO();
         fdao.cadastrar(f);
@@ -364,6 +365,7 @@ public class Form_funcionario extends javax.swing.JFrame {
         f.setTelefone(jF_telefone.getText());
         f.setDataadmissao(jF_adm.getText());
         f.setSenha(jP_senha.getText());
+        f.setPerfil(perfil);
         
         FuncionarioDAO fdao = new FuncionarioDAO();
         fdao.atualizar(f);
@@ -398,6 +400,8 @@ public class Form_funcionario extends javax.swing.JFrame {
            f.setEmail(jTabela_funcionario.getValueAt(opcao, 3).toString());
            f.setTelefone(jTabela_funcionario.getValueAt(opcao, 4).toString());
            f.setDataadmissao(jTabela_funcionario.getValueAt(opcao, 5).toString());
+           f.setSenha(jTabela_funcionario.getValueAt(opcao, 6).toString());
+           f.setPerfil(jTabela_funcionario.getValueAt(opcao, 7).toString());
            
            FuncionarioDAO fdao = new FuncionarioDAO();
            fdao.excluir(f);
@@ -417,6 +421,7 @@ public class Form_funcionario extends javax.swing.JFrame {
            jT_email.setText(jTabela_funcionario.getValueAt(opcao, 3).toString());
            jF_telefone.setText(jTabela_funcionario.getValueAt(opcao, 4).toString());
            jF_adm.setText(jTabela_funcionario.getValueAt(opcao, 5).toString());
+           jP_senha.setText(jTabela_funcionario.getValueAt(opcao, 6).toString());
            
            jTabbedPane1.setSelectedIndex(0);
            jB_atualizar.setVisible(true);
@@ -427,13 +432,17 @@ public class Form_funcionario extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jB_editarActionPerformed
 
+    private void jP_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jP_senhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jP_senhaActionPerformed
+
     public void preencherTabela(){
         FuncionarioDAO fdao = new FuncionarioDAO();
         List<Funcionario> listaFunc = fdao.listarTodos();
         DefaultTableModel tabelaFunc = (DefaultTableModel) jTabela_funcionario.getModel();
         tabelaFunc.setRowCount(0);
         for(Funcionario f : listaFunc){
-            tabelaFunc.addRow(new Object[]{f.getId_funcionario(),f.getNome(),f.getCpf(),f.getEmail(),f.getTelefone(),f.getDataadmissao()});
+            tabelaFunc.addRow(new Object[]{f.getId_funcionario(),f.getNome(),f.getCpf(),f.getEmail(),f.getTelefone(),f.getDataadmissao(),f.getSenha(),f.getPerfil()});
         }
     }
     
@@ -455,7 +464,7 @@ public class Form_funcionario extends javax.swing.JFrame {
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jF_adm;
-    private javax.swing.JFormattedTextField jF_cpf;
+    private javax.swing.JTextField jF_cpf;
     private javax.swing.JFormattedTextField jF_telefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
