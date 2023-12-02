@@ -267,7 +267,6 @@ private String perfil = "user";
         jF_telefone.setText("");
         jC_sexo.setSelectedIndex(-1);
         jT_senha.setText("");
-//        jB_atualizar.setVisible(false);
         jB_salvar.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

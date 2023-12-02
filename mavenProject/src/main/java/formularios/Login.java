@@ -223,8 +223,8 @@ public class Login extends javax.swing.JFrame {
                 String userType = rs.getString("perfil");
                 if (userType.equals("user")) {
                     this.setVisible(false);
-                    Form_menuPaciente mp = new Form_menuPaciente();
-                    mp.setVisible(true);
+                    Form_ListaPaciente lp = new Form_ListaPaciente();
+                    lp.setVisible(true);
                     this.dispose();
                 } else if (userType.equals("adm")) {
                     FuncionarioDAO fdao = new FuncionarioDAO();
@@ -237,8 +237,8 @@ public class Login extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Usuário ou senha de administrador incorreto!");
                     }
                 } else if (userType.equals("med")) {
-                    Form_menuMedico lc = new Form_menuMedico();
-                    lc.setVisible(true);
+                    Form_menuLista ml = new Form_menuLista();
+                    ml.setVisible(true);
                     this.dispose();
                 }
             } else {
